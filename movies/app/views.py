@@ -1,0 +1,18 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+
+
+def home(request):
+    search_movie = request.GET.get('search_movie')
+    print(search_movie)
+    return render(request, 'app/home.html', {'name': 'Александр', 'search_movie': search_movie})
+
+
+def about(request):
+    return render(request, '<h1>Это страница о нашем замечательном проекте "MOVIES"</h1>')
+
+
+def sign_up(request):
+    email = request.GET.get('email')
+    print(email)
+    return render(request, 'app/sign_up.html', {'email': email})
