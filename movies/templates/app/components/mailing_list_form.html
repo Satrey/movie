@@ -1,19 +1,20 @@
-<br><hr><br>
+<div class="card shadow ps-5 pe-5 pt-4 pb-4">
+    <h3 class="text-shadow">Добавить в лист рассылки:</h3>
+    <hr>
 
-<h3 class="text-shadow">Добавить в лист рассылки:</h3>
+    <form action="{% url 'sign_up' %}">
+        <div class="mb-3">
+            <label for="email" class="form-label text-shadow">
+                Введите адрес электронной почты:
+            </label>
+            <input type="email" class="form-control"
+                   name="email"/>
+        </div>
 
-<form action="{% url 'sign_up' %}">
-    <div class="mb-3">
-        <label for="email" class="form-label text-shadow">
-            Введите адрес электронной почты:
-        </label>
-        <input type="email" class="form-control"
-               name="email"/>
-    </div>
+        <br><hr><br>
 
-    <br><hr><br>
-
-    <button type="submit" class="btn btn-primary">
-        Добавить
-    </button>
-</form>
+        <button type="submit" class="btn btn-primary">
+            Добавить
+        </button>
+    </form>
+</div>

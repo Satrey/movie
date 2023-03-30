@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def home(request):
     search_movie = request.GET.get('search_movie')
     print(search_movie)
-    return render(request, 'app/home.html', {'name': 'Александр', 'search_movie': search_movie})
+    return render(request, 'app/home.html', {'name': 'Фёдор', 'search_movie': search_movie})
 
 
 def about(request):
