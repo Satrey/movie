@@ -3,21 +3,21 @@
 {% block navbar %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4 fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Навбар</a>
+        <a class="navbar-brand" href="#">МоЙФильм.ТВ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Главная</a>
+              <a class="nav-link" aria-current="page" href="{% url 'home' %}">Главная</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Ссылка</a>
+              <a class="nav-link" href="#">Техподдержка</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Выпадающий список
+                Настройки
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Действие</a></li>
@@ -27,7 +27,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">{{ name }}</a>
+              <a class="nav-link">{{ name }}</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -42,19 +42,23 @@
 {% block content %}
 
     <div class="container-fluid text-center">
-        <h2 class="text-danger text-shadow">Привет {{ name }}!</h2>
-        <p class="text-shadow"> Хочу поискать {{ search_movie| default:' ' }} </p>
+        <h3 class="text-shadow mb-4">
+            {% if not search_movie %}Привет {{ name }}, что посмотрим сегодня?
+            {% else %}{{ name }}, по твоему запросу есть фильмы!
+            {% endif %}
+        </h3>
+        <p class="text-shadow mb-4"> Хочу посмотреть {{ search_movie| default:' ' }} </p>
     </div>
 
     <div class="row mb-5">
         {% for movie in movies %}
-        <div class="col-sm-4 md-3-sm">
-            <div class="card shadow">
-                <div class="card-title p-3 bg-primary rounded-top text-white mb-0 overflow-hidden"><h5 class="text-shadow">{{ movie.title }}</h5></div>
+        <div class="col-sm-3 d-flex align-items-stretch">
+            <div class="card shadow-lg d-flex flex-column w-100 mb-4 p-1 movie-card">
+                <div class="card-header p-3 bg-primary rounded-top text-white mb-0 h-100"><h5 class="text-card-shadow">{{ movie.title }}</h5></div>
 <!--                <div class="card-sub-title ps-3 pb-3"><strong>{{ movie.description }}</strong></div>-->
                 <img class="rounded-bottom" src="{{ movie.image.url }}">
                 {% if movie.url %}
-                    <a href="{{ movie.url }}">Просмотр</a>
+                <a class="movie-link" href="{{ movie.url }}"><strong class="text-card-shadow">Просмотр</strong></a>
                 {% endif %}
             </div>
         </div>
