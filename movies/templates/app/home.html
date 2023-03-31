@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4 fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Навбар</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
@@ -46,7 +46,22 @@
         <p class="text-shadow"> Хочу поискать {{ search_movie| default:' ' }} </p>
     </div>
 
-    <div class="container">
+    <div class="row mb-5">
+        {% for movie in movies %}
+        <div class="col-sm-4 md-3-sm">
+            <div class="card shadow">
+                <div class="card-title p-3 bg-primary rounded-top text-white mb-0 overflow-hidden"><h5 class="text-shadow">{{ movie.title }}</h5></div>
+<!--                <div class="card-sub-title ps-3 pb-3"><strong>{{ movie.description }}</strong></div>-->
+                <img class="rounded-bottom" src="{{ movie.image.url }}">
+                {% if movie.url %}
+                    <a href="{{ movie.url }}">Просмотр</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <div class="container mb-4 ps-0 pe-0">
         {% include "app/components/mailing_list_form.html" %}
     </div>
 

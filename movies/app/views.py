@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Movie
+
 
 def home(request):
     search_movie = request.GET.get('search_movie')
     print(search_movie)
-    return render(request, 'app/home.html', {'name': 'Александр', 'search_movie': search_movie})
+    movies = Movie.objects.all()
+
+    return render(request, 'app/home.html', {'name': 'Фёдор', 'search_movie': search_movie, 'movies': movies})
 
 
 def about(request):

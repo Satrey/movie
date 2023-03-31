@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0 auto;
     box-sizing: border-box;
+    margin-top: 100px;
 }
 
 h1 {
@@ -10,5 +11,17 @@ h1 {
 
 .text-shadow {
     text-shadow: 1px 1px 4px gray;
+}
+
+.movie-card {
+
+}
+
+.movie-card:hover {
+    background-color: blue;
+}
+
+.content {
+
 }
 
