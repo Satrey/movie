@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4 fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">МоЙФильм.ТВ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'home' %}">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Техподдержка</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Настройки
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Действие</a></li>
+                <li><a class="dropdown-item" href="#">Другое действие</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">{{ name }}</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" name="search_movie" type="search" placeholder="Поиск" aria-label="Поиск">
+            <button class="btn btn-primary" type="submit">Поиск</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      {% for news in newss %}
+        <div class="card mb-4 shadow">
+          <div class="card-header d-flex justify-content-between p-3 bg-primary text-white text-card-shadow shadow">
+            <div>
+              <h5>{{ news.headline }}</h5>
+            </div>
+            <div>
+              <strong>{{ news.date }}</strong>
+            </div>
+          </div>
+          <div class="card-body">
+            {{  news.body }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

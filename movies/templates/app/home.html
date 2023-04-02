@@ -53,7 +53,10 @@
     <div class="row mb-5">
         {% for movie in movies %}
         <div class="col-sm-3 d-flex align-items-stretch">
-            <div class="card shadow-lg d-flex flex-column w-100 mb-4 p-1 movie-card">
+            <div class="card shadow-lg d-flex flex-column w-100 mb-4 p-1 movie-card"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        data-bs-title="<kf ,kf ,kf>">
                 <div class="card-header p-3 bg-primary rounded-top text-white mb-0 h-100"><h5 class="text-card-shadow">{{ movie.title }}</h5></div>
 <!--                <div class="card-sub-title ps-3 pb-3"><strong>{{ movie.description }}</strong></div>-->
                 <img class="rounded-bottom" src="{{ movie.image.url }}">

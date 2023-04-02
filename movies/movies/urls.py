@@ -22,9 +22,9 @@ from app.views import about, sign_up
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('about/', about, name='about'),
-    path('sign_up/', sign_up, name='sign_up' ),
+    path('sign_up/', sign_up, name='sign_up'),
     path('', include('app.urls')),
-
+    path('news/', include('news.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
