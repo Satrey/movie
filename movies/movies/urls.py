@@ -25,6 +25,7 @@ urlpatterns = [
     path('sign_up/', sign_up, name='sign_up'),
     path('', include('app.urls')),
     path('news/', include('news.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

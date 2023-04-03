@@ -5,29 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="container-fluid text-center">
-        <h3 class="text-shadow mb-4">
-            {% if not search_movie %}Привет {{ name }}, что посмотрим сегодня?
-            {% else %}{{ name }}, по твоему запросу {% if movies|length %} есть фильмы! {% else %} нет фильмов :( {% endif %}
-            {% endif %}
-        </h3>
-<!--        <p class="text-shadow mb-4"> Хочу посмотреть {{ search_movie| default:' ' }} </p>-->
-    </div>
-
-    <div class="row mb-5">
-        {% for movie in movies %}
+    <div class="row mb-5 container">
         <div class="col-sm-3 d-flex align-items-stretch">
             <div class="card shadow-lg d-flex flex-column w-100 mb-4 p-1 movie-card"
                         data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-custom-class="custom-tooltip"
                         data-bs-title="<kf ,kf ,kf>">
-                <div class="card-header p-3 bg-primary rounded-top text-white mb-0 h-100">
-                    <h5 class="text-card-shadow">
-                        <a class="detail-link" href="{% url 'detail' movie.id %}">{{ movie.title }}
-                        </a>
-                    </h5>
-                </div>
+                <div class="card-header p-3 bg-primary rounded-top text-white mb-0 h-100"><h5 class="text-card-shadow">{{ movie.title }}</h5></div>
 <!--                <div class="card-sub-title ps-3 pb-3"><strong>{{ movie.description }}</strong></div>-->
                 <img class="rounded-bottom" src="{{ movie.image.url }}">
                 {% if movie.url %}
@@ -35,13 +19,16 @@
                 {% endif %}
             </div>
         </div>
-    {% endfor %}
+        <div class="col-sm-9">
+            <h3>{{ movie.title }}</h3>
+            <hr>
+            <p>{{ movie.description }}</p>
+            <hr>
+            {% lorem %}
+            <hr>
+            <a type="button" class="btn btn-primary" href="{{ movie.url }}">Просмотр</a>
+        </div>
     </div>
-
-<!--    <div class="container mb-4 ps-0 pe-0">-->
-<!--        {% include "app/components/mailing_list_form.html" %}-->
-<!--    </div>-->
-
 {% endblock %}
 
 {% block footer %}

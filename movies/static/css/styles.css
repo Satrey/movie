@@ -46,3 +46,8 @@ h1 {
     color: red;
 }
 
+.detail-link {
+    color: white;
+    text-decoration: none;
+}
+
