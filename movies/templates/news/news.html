@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block navbar %}
+  {% include 'components/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      {% for news in newss %}
+        <div class="card mb-4 shadow">
+          <div class="card-header d-flex justify-content-between p-3 bg-primary text-white text-card-shadow shadow">
+            <div>
+              <h5>{{ news.headline }}</h5>
+            </div>
+            <div>
+              <strong>{{ news.date }}</strong>
+            </div>
+          </div>
+          <div class="card-body">
+            {{  news.body }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
