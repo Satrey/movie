@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row container">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white p-3">
+                    <h4 class="text-card-shadow">Регистрация пользователя</h4>
+                </div>
+                <form method="post">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <div class="p-4 text-end">
+                        <input class="btn btn-success shadow" type="submit" value="Регистрация">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
