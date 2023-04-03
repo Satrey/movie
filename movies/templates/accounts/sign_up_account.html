@@ -11,6 +11,11 @@
             <div class="card shadow">
                 <div class="card-header text-center bg-primary text-white p-3">
                     <h4 class="text-card-shadow">Регистрация пользователя</h4>
+                     {% if error %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ error }}
+                        </div>
+                     {% endif %}
                 </div>
                 <form method="post">
                     <div class="card-body">
