@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 from .models import Movie
 
 
 def home(request):
     search_movie = request.GET.get('search_movie')
-    print(search_movie)
     if search_movie:
         movies = Movie.objects.filter(title__iregex=search_movie)
     else:
