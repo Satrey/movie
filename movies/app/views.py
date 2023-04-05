@@ -47,3 +47,24 @@ def review(request, movie_id):
             return redirect('detail', new_review.movie_id)
         except ValueError:
             return render(request, 'app/review.html', {'form': ReviewForm(), 'error': 'Invalid request'})
+
+
+def update(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+    if request.method == 'GET':
+        form = ReviewForm(instance=review)
+        return render(request, 'app/update.html', {'form': form, 'review': review})
+    else:
+        try:
+            form = ReviewForm(request.POST, instance=review)
+            form.save()
+            return redirect('detail', review.movie.id)
+        except ValueError:
+            return render(request, 'app/update.html', {'review': review, 'form': form, 'error': 'Invalid request'})
+
+
+def delete(request, review_id):
+    review= get_object_or_404(Review, pk=review_id, user=request.user)
+    review.delete()
+    return redirect('detail', review.movie.id)
+
