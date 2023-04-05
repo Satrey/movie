@@ -10,3 +10,9 @@ class UserCreateForm(UserCreationForm):
             self.fields[fieldname].widget.attrs.update({'class': 'form-control'})
 
 
+class UserAuthForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(AuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password'].widget.attrs.update({'class': 'form-control'})
+

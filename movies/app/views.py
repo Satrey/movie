@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 
-from .models import Movie
+from .models import Movie, Review
+from .forms import ReviewForm
 
 
 def home(request):
@@ -28,4 +29,21 @@ def sign_up(request):
 
 def detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
-    return render(request, 'app/detail.html', {'movie': movie})
+    reviews = Review.objects.filter(movie=movie_id)
+    return render(request, 'app/detail.html', {'movie': movie, 'reviews': reviews})
+
+
+def review(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+    if request.method == 'GET':
+        return render(request, 'app/review.html', {'form': ReviewForm(), 'movie': movie})
+    else:
+        try:
+            form = ReviewForm(request.POST)
+            new_review = form.save(commit=False)
+            new_review.movie = movie
+            new_review.user = request.user
+            new_review.save()
+            return redirect('detail', new_review.movie_id)
+        except ValueError:
+            return render(request, 'app/review.html', {'form': ReviewForm(), 'error': 'Invalid request'})

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="row g-0">
+        <div>
+            <div class="card-body">
+                <h5 class="card-title">Добавить обзор для фильма
+                    {{ movie.title }}</h5>
+                {% if error %}
+                <div class="alert alert-danger mt-3"
+                     role="alert">
+                    {{ error }}
+                </div>
+                {% endif %}
+                <p class="card-text p-1">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-flex justify-content-end">
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                    Добавить обзор
+                            </button>
+                        </div>
+                    </form>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

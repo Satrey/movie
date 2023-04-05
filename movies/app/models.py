@@ -25,3 +25,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.text
+
+    class Meta:
+        verbose_name = ('Обзор')
+        verbose_name_plural = ('Обзоры')
