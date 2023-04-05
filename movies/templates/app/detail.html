@@ -42,19 +42,19 @@
             <hr>
             {% for review in reviews %}
             <div class="card p-3 mb-4 shadow">
-                <div class="card-title pb-0"><strong>{{ review.user.username }}</strong></div>
+                <div class="card-title pb-0"><strong class="text-shadow">{{ review.user.username }}</strong></div>
                 <hr class="">
-                <div class="card-text">{{ review.text }}</div>
+                <div class="card-text text-shadow">{{ review.text }}</div>
                 <hr>
                 <div class="card-bottom d-flex justify-content-between">
                     {% if user.is_authenticated and user == review.user %}
                         <div class="d-flex">
-                            <div><a class="btn btn-primary me-3" href="{% url 'update' review.id %}">Редактировать</a></div>
-                            <div><a class="btn btn-danger" href="{% url 'delete' review.id %}">Удалить</a></div>
+                            <div><a class="btn btn-primary me-3 shadow" href="{% url 'update' review.id %}">Редактировать</a></div>
+                            <div><a class="btn btn-danger shadow" href="{% url 'delete' review.id %}">Удалить</a></div>
                         </div>
                     {% endif %}
                     <div>
-                        <strong>{{ review.date }}</strong>
+                        <strong class="text-shadow">{{ review.date }}</strong>
                     </div>
                 </div>
             </div>
